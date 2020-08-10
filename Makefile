@@ -10,7 +10,7 @@ venv:
 test:
 	( \
 		source ./venv/bin/activate; \
-    	py.test tests; \
+    	nosetests tests; \
 	)
 
 .PHONY: init test
