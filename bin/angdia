@@ -1,0 +1,39 @@
+#! /usr/bin/env python3
+
+''' angdia CLI'''
+
+import argparse
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from traveller_utils.angdia import angdia
+
+def parse_args():
+    ''' Parse args
+        --diameter/-d: diameter
+        --distance/-D: distance
+        --mode/-m: mode (default=deg)
+    '''
+
+    args = argparse.ArgumentParser(description="Angular diameter calculator")
+    args.add_argument("--diameter", "-d", help="Object diameter", required=True, type=float)
+    args.add_argument("--distance", "-D", help="Distance to object", required=True, type=float)
+    args.add_argument("--mode", "-m", help="angular diameter units: degree (default) or radians", default="deg", type=str)
+    return args.parse_args()
+
+def main():
+    ''' Main
+    '''
+    args = parse_args()
+    print(
+        "Diameter = {} Distance = {} Angular diameter = {} {}".format(
+            args.diameter,
+            args.distance,
+            angdia(args.diameter, args.distance, args.mode),
+            args.mode
+        )
+    )
+
+if __name__ == "__main__":
+    main()
