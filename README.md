@@ -11,4 +11,4 @@ to generate some useful data for use with the Traveller RPG.
 ### T5
 ### utils
 * util.py/Die() - generic die-roller
-* util.pyTable() - table of results (e.g. cargo generator) that can return a random row on demand
+* util.py/Table() - table of results (e.g. cargo generator) that can return a random row on demand
