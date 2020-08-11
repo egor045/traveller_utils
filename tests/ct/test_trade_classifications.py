@@ -41,5 +41,3 @@ class TestTradeClassifications(unittest.TestCase):
         ]:
             with self.assertRaises(ValueError):
                 _ = TradeClassification(tc)
-    
-
