@@ -1,0 +1,115 @@
+'''planet.py'''
+
+from ehex import ehex
+
+from traveller_utils.planet import BasePlanet
+from traveller_utils.util import Die
+
+D6 = Die(6)
+
+class Planet(BasePlanet):
+    ''' CT planet extends BasePlanet'''
+
+    def __init__(self, upp: str="", name: str="", map: str="", hex: str="", mode: str="1981"):
+        super().__init__(upp=upp, name=name, map=map, hex=hex)
+        try:
+            assert str(mode) in ["1977", "1981"]
+        except AssertionError:
+            raise ValueError("Invalid mode {} for planet".format(mode))
+        self.__mode = str(mode)
+        if upp == "":
+            self.generate()
+    
+    def generate(self):
+        ''' Generate UPP'''
+
+        # Starport
+        r = D6.roll(2)
+        if r <= 4:
+            starport = "A"
+        elif 4 < r <= 6:
+            starport = "B"
+        elif 6 < r <= 9:
+            starport = "C"
+        elif 9 < r <= 10:
+            starport = "D"
+        elif r == 11:
+            starport = "E"
+        else:
+            starport = "X"
+
+        # Size
+        size = ehex(D6.roll(2, -2, floor=0))
+
+        # Atmosphere
+        if size == 0:
+            atmosphere = 0
+        else:
+            r = D6.roll(dice=2, modifier=int(size) - 7, floor=0, ceiling=12)
+            atmosphere = ehex(r)
+        
+        # Hydrographics
+        dm = int(size) - 7
+        if size in [0, 1]:
+            hydrographics = 0
+        else:
+            if atmosphere <= 1 or atmosphere >= 10:
+                dm = dm - 4
+            r = D6.roll(dice=2, modifier=dm, floor=0, ceiling=10)
+            hydrographics = ehex(r)
+        
+        # Population
+        population = ehex(D6.roll(dice=2, modifier=-2, floor=0, ceiling=10))
+
+        # Government
+        r = D6.roll(dice=2, modifier=int(population) - 7, floor=0, ceiling=13)
+        government = ehex(r)
+
+        # Law level
+        r = D6.roll(dice=2, modifier=int(government) - 7, floor=0, ceiling=10)
+        law_level = ehex(r)
+
+        # Tech level
+        dm = 0
+        if starport == "A":
+            dm += 6
+        if starport == "B":
+            dm += 4
+        if starport == "C":
+            dm += 2
+        if starport == "X":
+            dm -= 4
+
+        if size in [0, 1]:
+            dm += 2
+        if 2 <= size <= 4:
+            dm += 1
+        if atmosphere <= 3 or atmosphere >= 10:
+            dm += 1
+        if hydrographics == 9:
+            dm += 1
+        if hydrographics == 10:
+            dm += 2
+        if 1 <= population <= 5:
+            dm += 1
+        if population == 9:
+            dm += 2
+        if population == 10:
+            dm += 4
+        if government in [0, 5]:
+            dm += 1
+        if government == "D":
+            dm -= 2
+        tech_level = ehex(D6.roll(dice=1, modifier=dm, floor=0))
+
+        upp = "{}{}{}{}{}{}{}-{}".format(
+            starport,
+            size,
+            atmosphere,
+            hydrographics,
+            population,
+            government,
+            law_level,
+            tech_level
+        )
+        self.import_upp(upp)
