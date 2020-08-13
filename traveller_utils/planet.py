@@ -26,11 +26,9 @@ class Starport():
 class BasePlanet():
     ''' Base planet'''
 
-    def __init__(self, upp: str="", name: str="", map: str="", hex: str=""):
+    def __init__(self, upp: str="", name: str=""):
         self.trade_classifications = []
-        self.name = str(name)
-        self.map = str(map)
-        self.hex = str(hex)
+        self.__name = str(name)
         if str(upp) == "":
             self.__starport = ""
             self.__size = ehex()
@@ -101,3 +99,7 @@ class BasePlanet():
     @property
     def tech_level(self):
         return self.__tech_level
+
+    @property
+    def name(self):
+        return self.__name
