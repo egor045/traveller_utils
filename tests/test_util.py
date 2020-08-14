@@ -10,12 +10,19 @@ import json
 import logging
 import unittest
 
-import traveller_utils
+from mock import mock
 
+import traveller_utils
 from ehex import ehex
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.DEBUG)
+
+def mock_randint(min, max):
+    ''' Fake randint - return int(max / 2)
+    '''
+    return int(max / 2)
+
 
 
 class TestMinMax(unittest.TestCase):
@@ -132,3 +139,29 @@ class TestDie(unittest.TestCase):
         LOGGER.debug("roll = %s", r)
         self.assertTrue( 0 < r < 7)
 
+    def test_modifier(self):
+        ''' Die test effect of modifier
+        '''
+        with mock.patch('traveller_utils.util.randint', mock_randint):
+            d = traveller_utils.util.Die(6)
+            r = d.roll(dice=1, modifier=2)
+            LOGGER.debug("roll = %s", r)
+            self.assertTrue(r == 5)
+    
+    def test_floor(self):
+        ''' Die test effect of floor
+        '''
+        with mock.patch('traveller_utils.util.randint', mock_randint):
+            d = traveller_utils.util.Die(6)
+            r = d.roll(dice=1, floor=4)
+            LOGGER.debug("roll = %s", r)
+            self.assertTrue(r == 4)
+    
+    def test_ceiling(self):
+        ''' Die test effect of ceiling
+        '''
+        with mock.patch('traveller_utils.util.randint', mock_randint):
+            d = traveller_utils.util.Die(6)
+            r = d.roll(dice=1, ceiling=2)
+            LOGGER.debug("roll = %s", r)
+            self.assertTrue(r == 2)
