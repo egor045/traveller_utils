@@ -9,9 +9,12 @@ Contents
 
 LBB2
 * cargo.py/Cargo() - LBB2 cargo generator
+
 * cargo/py/CargoSale() - LBB2 cargo sale details generator
 utils
+
 * util.py/Die() - generic die-roller
+
 * util.py/Table() - table of results (e.g. cargo generator) that can return a random row on demand
 
 Status
