@@ -20,7 +20,7 @@ utils
 Status
 ------
 .. image:: https://travis-ci.com/egor045/traveller_utils.svg?branch=master
-    :target: https://travis-ci.com/github/egor045/traveller_utils
+    :target: https://travis-ci.com/egor045/traveller_utils
 
 The project code is hosted on GitHub_
 
