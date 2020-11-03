@@ -35,7 +35,7 @@ from traveller_utils.ct.lbb6_systemgen_tables import (
     STELLAR_TEMPERATURE,
     STELLAR_RADIUS,
     STELLAR_MASS,
-    Orbit
+    PlanetaryOrbit
 )
 from traveller_utils.util import Die
 
@@ -242,7 +242,7 @@ class TestPlanetoidTables(unittest.TestCase):
             self.assertTrue(result == expected[roll])
 
 
-class TestOrbit(unittest.TestCase):
+class TestPlanetaryOrbit(unittest.TestCase):
     ''' Orbit tests'''
 
     def setUp(self):
@@ -259,7 +259,7 @@ class TestOrbit(unittest.TestCase):
         for indx in expected.keys():
             radius_km = expected[indx][0]
             radius_au = expected[indx][1]
-            orbit = Orbit(indx, radius_km)
+            orbit = PlanetaryOrbit(indx, radius_km)
             self.log.debug(
                 "indx = %d radius_km = %f radius_au = %f orbit.number = %d, orbit.radius_km = %f orbit.radius_au = %f", 
                 indx, radius_km, radius_au, orbit.number, orbit.radius_km, orbit.radius_au

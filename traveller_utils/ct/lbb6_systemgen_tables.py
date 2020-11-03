@@ -23,7 +23,7 @@ class MaxOrbits(Table):
             return int(indx)
 
 
-class Orbit(object):
+class PlanetaryOrbit(object):
 
     def __init__(self, number, radius):
         self.__number = int(number)
@@ -198,22 +198,22 @@ PLANETARY_ORBITS = Table()
 PLANETARY_ORBITS.dice = 2
 PLANETARY_ORBITS.floor = 0
 PLANETARY_ORBITS.ceiling = 15
-PLANETARY_ORBITS.add_row(0, Orbit(0, 29.9))
-PLANETARY_ORBITS.add_row(1, Orbit(1, 59.8))
-PLANETARY_ORBITS.add_row(2, Orbit(2, 104.7))
-PLANETARY_ORBITS.add_row(3, Orbit(3, 149.6))
-PLANETARY_ORBITS.add_row(4, Orbit(4, 239.3))
-PLANETARY_ORBITS.add_row(5, Orbit(5, 418.9))
-PLANETARY_ORBITS.add_row(6, Orbit(6, 777.9))
-PLANETARY_ORBITS.add_row(7, Orbit(7, 1495.9))
-PLANETARY_ORBITS.add_row(8, Orbit(8, 2932))
-PLANETARY_ORBITS.add_row(9, Orbit(9, 5804))
-PLANETARY_ORBITS.add_row(10, Orbit(10, 11548))
-PLANETARY_ORBITS.add_row(11, Orbit(11, 23038))
-PLANETARY_ORBITS.add_row(12, Orbit(12, 46016))
-PLANETARY_ORBITS.add_row(13, Orbit(13, 91972))
-PLANETARY_ORBITS.add_row(14, Orbit(14, 183885))
-PLANETARY_ORBITS.add_row(15, Orbit(15, 367711))
+PLANETARY_ORBITS.add_row(0, PlanetaryOrbit(0, 29.9))
+PLANETARY_ORBITS.add_row(1, PlanetaryOrbit(1, 59.8))
+PLANETARY_ORBITS.add_row(2, PlanetaryOrbit(2, 104.7))
+PLANETARY_ORBITS.add_row(3, PlanetaryOrbit(3, 149.6))
+PLANETARY_ORBITS.add_row(4, PlanetaryOrbit(4, 239.3))
+PLANETARY_ORBITS.add_row(5, PlanetaryOrbit(5, 418.9))
+PLANETARY_ORBITS.add_row(6, PlanetaryOrbit(6, 777.9))
+PLANETARY_ORBITS.add_row(7, PlanetaryOrbit(7, 1495.9))
+PLANETARY_ORBITS.add_row(8, PlanetaryOrbit(8, 2932))
+PLANETARY_ORBITS.add_row(9, PlanetaryOrbit(9, 5804))
+PLANETARY_ORBITS.add_row(10, PlanetaryOrbit(10, 11548))
+PLANETARY_ORBITS.add_row(11, PlanetaryOrbit(11, 23038))
+PLANETARY_ORBITS.add_row(12, PlanetaryOrbit(12, 46016))
+PLANETARY_ORBITS.add_row(13, PlanetaryOrbit(13, 91972))
+PLANETARY_ORBITS.add_row(14, PlanetaryOrbit(14, 183885))
+PLANETARY_ORBITS.add_row(15, PlanetaryOrbit(15, 367711))
 
 # SATELLITE_RING_ORBITS
 SATELLITE_RING_ORBITS = Table()
